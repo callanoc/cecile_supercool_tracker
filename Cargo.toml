@@ -1,0 +1,62 @@
+[package]
+name = "cecile-supercool-tracker"
+description = "Machine learning framework for building object trackers and similarity search engines"
+readme = "README.md"
+keywords = ["machine-learning", "similarity", "tracking", "SORT", "DeepSORT"]
+categories = ["algorithms", "data-structures", "computer-vision", "science"]
+version = "0.0.1"
+edition = "2021"
+rust-version = "1.66"
+
+[lib]
+crate-type = ["cdylib", "lib"]
+name = "cecile_supercool_tracker"
+
+[features]
+default = ["python"]
+python = ["dep:pyo3", "dep:pyo3-build-config","dep:pyo3-log"]
+
+[dependencies]
+itertools = "0.12"
+anyhow = "1.0"
+thiserror = "1.0"
+once_cell = "1.19"
+num_cpus = "1.16"
+ultraviolet = "0.9"
+crossbeam = "0.8"
+rand = "0.8"
+log = "0.4"
+nalgebra = "0.32"
+pathfinding = "4.8"
+geo = "0.27"
+rayon = "1.8"
+env_logger = "0.10"
+
+[dependencies.pyo3]
+version = "0.20"
+features = ["extension-module"]
+optional = true
+
+[dependencies.pyo3-log]
+version = "0.8"
+optional = true
+
+[build-dependencies]
+pyo3-build-config = { version = "0.18", optional = true }
+
+[dev-dependencies]
+wide = "0.7"
+
+[profile.dev]
+opt-level = 3
+
+[profile.release]
+opt-level = 3
+codegen-units = 1
+
+[profile.bench]
+opt-level = 3
+codegen-units = 1
+
+[package.metadata.maturin]
+python-source = "python"
