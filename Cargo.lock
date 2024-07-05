@@ -102,6 +102,7 @@ dependencies = [
  "pyo3-log",
  "rand",
  "rayon",
+ "serde",
  "thiserror",
  "ultraviolet",
  "wide",

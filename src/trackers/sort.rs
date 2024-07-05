@@ -8,6 +8,7 @@ use crate::utils::bbox::Universal2DBox;
 use crate::utils::kalman::kalman_2d_box::DIM_2D_BOX_X2;
 use crate::utils::kalman::KalmanState;
 use anyhow::Result;
+use serde::{Serialize, Deserialize};
 
 use std::collections::{HashMap, VecDeque};
 use std::sync::{Arc, RwLock};
@@ -356,14 +357,14 @@ impl From<Track<SortAttributes, SortMetric, Universal2DBox>> for WastedSortTrack
     }
 }
 
-#[derive(Default, Debug, Clone, Copy)]
+#[derive(Default, Debug, Clone, Copy, Deserialize, Serialize)]
 pub enum VotingType {
     #[default]
     Visual,
     Positional,
 }
 
-#[derive(Clone, Default, Copy, Debug)]
+#[derive(Clone, Default, Copy, Debug, Deserialize, Serialize)]
 pub enum PositionalMetricType {
     #[default]
     Mahalanobis,
